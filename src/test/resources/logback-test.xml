@@ -1,0 +1,36 @@
+<configuration debug="false">
+    <appender name="FILE-TEST" class="ch.qos.logback.classic.sift.SiftingAppender">
+        <!-- Value defined by MDC.put in java source code -->
+        <discriminator>
+            <key>testName</key>
+            <defaultValue>unknownTest</defaultValue>
+        </discriminator>
+
+        <sift>
+            <appender name="FILE-${testName}" class="ch.qos.logback.core.FileAppender">
+                <file>target/test-logs/${testName}.log</file>
+
+                <encoder>
+                    <pattern>%date{HH:mm:ss.SSS} %-5level %logger{20} - %msg %n</pattern>
+                </encoder>
+            </appender>
+        </sift>
+    </appender>
+
+    <appender name="STDERR" class="ch.qos.logback.core.ConsoleAppender">
+        <target>System.err</target>
+        <encoder>
+            <pattern>%-5level %logger{20} - %msg %n</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>WARN</level>
+        </filter>
+    </appender>
+
+    <root level="DEBUG">
+        <appender-ref ref="FILE-TEST"/>
+        <appender-ref ref="STDERR"/>
+    </root>
+
+    <logger name="com.tngtech.jgiven" level="ERROR"/>
+</configuration>
