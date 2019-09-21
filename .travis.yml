@@ -6,7 +6,7 @@ dist: trusty
 jdk: oraclejdk8
 
 script:
-  - ./gradlew build
+  - ./gradlew build --info --stacktrace
 
 before_install:
   # enable GUI subsystem, otherwise we can't test the Swing parts (java.awt.HeadlessException)
@@ -24,7 +24,3 @@ cache:
 
 after_success:
   - ./gradlew jacocoTestReport coveralls
-
-env:
-  global:
-    secure: ApZP9w6WQb5ZUZhuoUozkdkuSVQ80/jFDKs8s5snRPtZybsvnme0CZpeqVeSxkAmyoALrWOaJ3I42i7jP95FTLvsQgLkb44XEmk+uaF6ozHV87bDz7FgB2vNr5orBlfcjDcGeT0ayZPz/5dROFkiPDCkmkLQfDChkjxTlVJP1jGBrQ9EPnMl1syUe4T/rYZ+HzTQj4Z6f57ZvQ+nRJaxp9grH8FKtTEZk8ICd1Y7Ds6bsyCsGdR9Fpd9ilNPAQ3U1OazReohY6qwi7vzMKRC3hCPzSGJntYidfOMDqhHPy2BEcWP8xz3MMXUeShwsKAD4BQ62MIv4PkctVGudcKZZBmVWD4RT3SHYDrYear7p4QDSUOoOZ56ySgk0UaX3BRfigVhkCRlgqhpI7O7U4RMXTcryUhLaqO5iieL0EnZYmspolruh8OE/Y4dTmaZ3Zg8/cB7KUgewA3cSoW19+rOigjF9kPUyCc462OjblShUrPwq94ycJRxjxAVUCQDg6D13I63Ixsv6fnzkMeMENXZy12IpZtS0YjB3GmXEBR4k83Vrsg6bgemsOaUmwU0Ijmup6aKMrL2+T5gWPersvDSsqJ/bJQ9pl4tWU6HWpEMu/6TmL3rjDYLeSmIczC4NE93mpT7ALlw5No+4aAK7k/QNP4TtxPWWN4yjvSnXYNdjCg=
