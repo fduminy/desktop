@@ -6,7 +6,7 @@ dist: trusty
 jdk: oraclejdk8
 
 script:
-  - ./gradlew build
+  - ./gradlew build --info --stacktrace
 
 before_install:
   # enable GUI subsystem, otherwise we can't test the Swing parts (java.awt.HeadlessException)
@@ -21,3 +21,6 @@ cache:
   directories:
     - $HOME/.gradle/caches/
     - $HOME/.gradle/wrapper/
+
+after_success:
+  - ./gradlew jacocoTestReport coveralls
