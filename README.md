@@ -1,1 +1,2 @@
 [![Build Status](https://travis-ci.org/fduminy/desktop.svg?branch=master)](https://travis-ci.org/fduminy/desktop)
+[![Coverage Status](https://coveralls.io/repos/github/fduminy/desktop/badge.svg?branch=master)](https://coveralls.io/github/fduminy/desktop?branch=master)

@@ -17,6 +17,9 @@ plugins {
     id "com.tngtech.jgiven.gradle-plugin" version "0.18.2"
     id 'findbugs'
     id 'pmd'
+
+    id 'jacoco'
+    id 'com.github.kt3k.coveralls' version '2.8.4'
 }
 
 group = 'fr.duminy.desktop'
@@ -119,6 +122,17 @@ publishing {
             }
         }
     }
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled = true // coveralls plugin depends on xml format report
+        html.enabled = true
+    }
+}
+
+coveralls {
+    jacocoReportPath 'build/reports/jacoco/jacocoTestReport/jacocoTestReport.xml'
 }
 
 //noinspection GrDeprecatedAPIUsage //TODO use SpotBugs when it will be fixed
