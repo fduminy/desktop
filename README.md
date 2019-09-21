@@ -1,2 +1,3 @@
 [![Build Status](https://travis-ci.org/fduminy/desktop.svg?branch=master)](https://travis-ci.org/fduminy/desktop)
 [![Coverage Status](https://coveralls.io/repos/github/fduminy/desktop/badge.svg)](https://coveralls.io/github/fduminy/desktop)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/e934d6a3a9dc48c080331ffb2e4d4c97)](https://www.codacy.com/manual/fduminy/desktop?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=fduminy/desktop&amp;utm_campaign=Badge_Grade)
