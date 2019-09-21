@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         name="desktopRuleSet"
+         xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+         xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 https://pmd.sourceforge.io/ruleset_2_0_0.xsd">
+    <description>Desktop rule set for tests</description>
+
+    <rule ref="category/java/codestyle.xml/MethodNamingConventions">
+        <properties>
+            <!-- (test) methods are allowed to contains underscore in their name for JGiven based tests -->
+            <property name="methodPattern" value="[a-z][_a-zA-Z0-9]*"/>
+            <property name="junit4TestPattern" value="[a-z][_a-zA-Z0-9]*"/>
+        </properties>
+    </rule>
+</ruleset>

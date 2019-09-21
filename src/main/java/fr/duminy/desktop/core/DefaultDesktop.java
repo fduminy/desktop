@@ -9,11 +9,12 @@ import java.awt.*;
 
 import static java.awt.BorderLayout.CENTER;
 
-@SuppressWarnings("serial") class DefaultDesktop extends JPanel implements Desktop {
+@SuppressWarnings("serial")
+    /* default */ class DefaultDesktop extends JPanel implements Desktop {
     private final CustomDesktopManager manager;
     private final JDesktopPane desktopPane;
 
-    DefaultDesktop() {
+    /* default */ DefaultDesktop() {
         super(new BorderLayout());
 
         manager = new CustomDesktopManager();
@@ -36,11 +37,11 @@ import static java.awt.BorderLayout.CENTER;
         return desktopPane.getSelectedFrame();
     }
 
-    final void addWindow(JInternalFrame window) {
+    @VisibleForTesting final void addWindow(JInternalFrame window) {
         desktopPane.add(window);
     }
 
-    final void removeWindow(JInternalFrame window) {
+    @VisibleForTesting final void removeWindow(JInternalFrame window) {
         desktopPane.remove(window);
     }
 }

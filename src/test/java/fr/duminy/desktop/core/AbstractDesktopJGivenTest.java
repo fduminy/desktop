@@ -10,13 +10,18 @@ import static java.lang.String.format;
 import static org.slf4j.MDC.put;
 import static org.slf4j.MDC.remove;
 
-@SuppressWarnings("unused") abstract class AbstractDesktopJGivenTest extends AssertJSwingTestCaseTemplateJUnit5 {
+@SuppressWarnings("unused")
+/* default */ abstract class AbstractDesktopJGivenTest extends AssertJSwingTestCaseTemplateJUnit5 {
     private static final String TEST_NAME = "testName";
 
-    @Override void onSetUp() {
+    @Override
+        /* default */ void onSetUp() {
+        // nothing to do
     }
 
-    @Override void onTearDown() {
+    @Override
+        /* default */ void onTearDown() {
+        // nothing to do
     }
 
     @BeforeEach private void setupMDC(TestInfo testInfo) {

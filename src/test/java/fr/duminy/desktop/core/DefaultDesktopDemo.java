@@ -1,8 +1,7 @@
 package fr.duminy.desktop.core;
 
-import fr.duminy.desktop.Desktop;
+import com.google.common.annotations.VisibleForTesting;
 import org.assertj.swing.edt.GuiQuery;
-import org.assertj.swing.util.Pair;
 import org.slf4j.Logger;
 
 import javax.swing.*;
@@ -16,7 +15,6 @@ import static javax.swing.BorderFactory.createTitledBorder;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import static org.assertj.core.api.Assertions.fail;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
-import static org.assertj.swing.util.Pair.of;
 import static org.slf4j.LoggerFactory.getLogger;
 
 public class DefaultDesktopDemo {
@@ -31,9 +29,9 @@ public class DefaultDesktopDemo {
         new DefaultDesktopDemo().init();
     }
 
-    final void init() {
-        Pair<JFrame, fr.duminy.desktop.Desktop> pair = execute(new GuiQuery<Pair<JFrame, fr.duminy.desktop.Desktop>>() {
-            @Override protected Pair<JFrame, Desktop> executeInEDT() {
+    @VisibleForTesting final void init() {
+        desktop = execute(new GuiQuery<DefaultDesktop>() {
+            @Override protected DefaultDesktop executeInEDT() {
                 JPanel content = new JPanel(new BorderLayout());
 
                 content.add(buildCommandPanel(), WEST);
@@ -52,13 +50,12 @@ public class DefaultDesktopDemo {
                 Dimension size = frame.getSize();
                 frame.setLocation((int) (screenSize.getWidth() - size.getWidth()),
                                   (int) (screenSize.getHeight() - size.getHeight() - OS_TASK_BAR_SIZE));
-                return of(frame, desktop);
+                return desktop;
             }
         });
-        desktop = (DefaultDesktop) pair.second;
     }
 
-    DefaultDesktop getDesktop() {
+    @VisibleForTesting DefaultDesktop getDesktop() {
         return desktop;
     }
 
@@ -83,22 +80,22 @@ public class DefaultDesktopDemo {
         parent.add(button);
     }
 
-    private void createCloseActiveWindowButton(JPanel p) {
+    private void createCloseActiveWindowButton(JPanel panel) {
         JButton result = new JButton("close active window");
         result.setName("closeActiveFrame");
         result.addActionListener(e -> {
             JInternalFrame frame = desktop.getSelectedFrame();
-            if (frame != null) {
+            if (frame == null) {
+                LOG.warn("no active Window to close");
+            } else {
                 try {
                     frame.setClosed(true);
                 } catch (PropertyVetoException e1) {
                     fail(e1.getMessage(), e1);
                 }
-                LOG.info("active Window is " + (frame.isClosed() ? "closed" : "not closed !!!"));
-            } else {
-                LOG.warn("no active Window to close");
+                LOG.info("active Window is {}", frame.isClosed() ? "closed" : "not closed !!!");
             }
         });
-        p.add(result);
+        panel.add(result);
     }
 }

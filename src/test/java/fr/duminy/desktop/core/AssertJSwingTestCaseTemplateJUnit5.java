@@ -31,7 +31,9 @@ public abstract class AssertJSwingTestCaseTemplateJUnit5 extends AssertJSwingTes
         }
     }
 
+    /* default */
     abstract void onSetUp();
 
+    /* default */
     abstract void onTearDown();
 }
