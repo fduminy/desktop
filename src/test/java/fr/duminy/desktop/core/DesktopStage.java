@@ -5,6 +5,7 @@ import fr.duminy.desktop.WindowListener;
 
 import javax.swing.*;
 
+import static fr.duminy.desktop.core.DefaultDesktopDemo.getJDesktopPane;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 import static org.mockito.Mockito.*;
 
@@ -41,7 +42,7 @@ import static org.mockito.Mockito.*;
     /* default */ DesktopStage create_new_window() {
         window = execute(() -> {
             JInternalFrame window = windowFactory.createWindow();
-            desktop.addWindow(window);
+            getJDesktopPane(desktop).add(window);
             return window;
         });
         return self();
@@ -49,7 +50,7 @@ import static org.mockito.Mockito.*;
 
     /* default */ DesktopStage close_window() {
         execute(() -> {
-            desktop.removeWindow(window);
+            getJDesktopPane(desktop).remove(window);
             return null;
         });
         return self();

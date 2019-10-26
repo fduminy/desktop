@@ -1,6 +1,6 @@
 package fr.duminy.desktop.core;
 
-import com.google.common.annotations.VisibleForTesting;
+import org.assertj.core.util.VisibleForTesting;
 import org.assertj.swing.edt.GuiQuery;
 import org.slf4j.Logger;
 
@@ -11,6 +11,7 @@ import java.beans.PropertyVetoException;
 import static java.awt.BorderLayout.CENTER;
 import static java.awt.BorderLayout.WEST;
 import static java.awt.Toolkit.getDefaultToolkit;
+import static java.util.Arrays.stream;
 import static javax.swing.BorderFactory.createTitledBorder;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import static org.assertj.core.api.Assertions.fail;
@@ -29,7 +30,24 @@ public class DefaultDesktopDemo {
         new DefaultDesktopDemo().init();
     }
 
-    @VisibleForTesting final void init() {
+    static JDesktopPane getJDesktopPane(DefaultDesktop desktop) {
+        return stream(desktop.getClass().getDeclaredFields())
+                .filter(f -> f.getType().equals(JDesktopPane.class))
+                .map(f -> {
+                    try {
+                        f.setAccessible(true);
+                        return f.get(desktop);
+                    } catch (IllegalAccessException e) {
+                        fail(e.getMessage(), e);
+                        return null;
+                    }
+                })
+                .map(JDesktopPane.class::cast)
+                .findAny()
+                .orElse(null);
+    }
+
+    final void init() {
         desktop = execute(new GuiQuery<DefaultDesktop>() {
             @Override protected DefaultDesktop executeInEDT() {
                 JPanel content = new JPanel(new BorderLayout());
@@ -55,10 +73,6 @@ public class DefaultDesktopDemo {
         });
     }
 
-    @VisibleForTesting DefaultDesktop getDesktop() {
-        return desktop;
-    }
-
     private JPanel buildCommandPanel() {
         JPanel windowCommands = new JPanel(new GridLayout(1, 1));
         createNewWindowButton(windowCommands);
@@ -71,11 +85,16 @@ public class DefaultDesktopDemo {
         return windowCommands;
     }
 
+    @VisibleForTesting
+    DefaultDesktop getDesktop() {
+        return desktop;
+    }
+
     private void createNewWindowButton(JPanel parent) {
         JButton button = new JButton("new window");
         button.addActionListener(e -> {
             JInternalFrame window = windowFactory.createWindow();
-            desktop.addWindow(window);
+            addWindow(window);
         });
         parent.add(button);
     }
@@ -84,7 +103,7 @@ public class DefaultDesktopDemo {
         JButton result = new JButton("close active window");
         result.setName("closeActiveFrame");
         result.addActionListener(e -> {
-            JInternalFrame frame = desktop.getSelectedFrame();
+            JInternalFrame frame = getSelectedFrame();
             if (frame == null) {
                 LOG.warn("no active Window to close");
             } else {
@@ -97,5 +116,13 @@ public class DefaultDesktopDemo {
             }
         });
         panel.add(result);
+    }
+
+    private JInternalFrame getSelectedFrame() {
+        return getJDesktopPane(desktop).getSelectedFrame();
+    }
+
+    private void addWindow(JInternalFrame window) {
+        getJDesktopPane(desktop).add(window);
     }
 }
