@@ -11,16 +11,16 @@ import static org.slf4j.MDC.put;
 import static org.slf4j.MDC.remove;
 
 @SuppressWarnings("unused")
-/* default */ abstract class AbstractDesktopJGivenTest extends AssertJSwingTestCaseTemplateJUnit5 {
+abstract class AbstractDesktopJGivenTest extends AssertJSwingTestCaseTemplateJUnit5 {
     private static final String TEST_NAME = "testName";
 
     @Override
-        /* default */ void onSetUp() {
+    void onSetUp() {
         // nothing to do
     }
 
     @Override
-        /* default */ void onTearDown() {
+    void onTearDown() {
         // nothing to do
     }
 

@@ -1,5 +1,6 @@
 package fr.duminy.desktop.core;
 
+import com.google.common.annotations.VisibleForTesting;
 import fr.duminy.desktop.Desktop;
 import fr.duminy.desktop.WindowListener;
 
@@ -9,13 +10,11 @@ import java.awt.*;
 import static java.awt.BorderLayout.CENTER;
 
 @SuppressWarnings("serial")
-    /* default */ class DefaultDesktop extends JPanel implements Desktop {
+class DefaultDesktop extends JPanel implements Desktop {
     private final CustomDesktopManager manager;
-
-    @SuppressWarnings("FieldCanBeLocal")
     private final JDesktopPane desktopPane;
 
-    /* default */ DefaultDesktop() {
+    DefaultDesktop() {
         super(new BorderLayout());
 
         manager = new CustomDesktopManager();
@@ -32,5 +31,10 @@ import static java.awt.BorderLayout.CENTER;
 
     @Override public final void removeWindowListener(WindowListener windowListener) {
         manager.removeWindowListener(windowListener);
+    }
+
+    @VisibleForTesting
+    JDesktopPane getDesktopPane() {
+        return desktopPane;
     }
 }

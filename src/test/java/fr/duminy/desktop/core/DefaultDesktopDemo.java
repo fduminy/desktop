@@ -11,7 +11,6 @@ import java.beans.PropertyVetoException;
 import static java.awt.BorderLayout.CENTER;
 import static java.awt.BorderLayout.WEST;
 import static java.awt.Toolkit.getDefaultToolkit;
-import static java.util.Arrays.stream;
 import static javax.swing.BorderFactory.createTitledBorder;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import static org.assertj.core.api.Assertions.fail;
@@ -31,20 +30,7 @@ public class DefaultDesktopDemo {
     }
 
     static JDesktopPane getJDesktopPane(DefaultDesktop desktop) {
-        return stream(desktop.getClass().getDeclaredFields())
-                .filter(f -> f.getType().equals(JDesktopPane.class))
-                .map(f -> {
-                    try {
-                        f.setAccessible(true);
-                        return f.get(desktop);
-                    } catch (IllegalAccessException e) {
-                        fail(e.getMessage(), e);
-                        return null;
-                    }
-                })
-                .map(JDesktopPane.class::cast)
-                .findAny()
-                .orElse(null);
+        return desktop.getDesktopPane();
     }
 
     final void init() {

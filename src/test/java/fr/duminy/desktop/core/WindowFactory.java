@@ -4,15 +4,16 @@ import org.assertj.core.util.VisibleForTesting;
 
 import javax.swing.*;
 import java.beans.PropertyVetoException;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.junit.jupiter.api.Assertions.fail;
 
-/* default */ class WindowFactory {
-    private int windowCount = 0;
+class WindowFactory {
+    private static final AtomicInteger WINDOW_COUNT = new AtomicInteger(1);
 
     @VisibleForTesting
     JInternalFrame createWindow() {
-        JInternalFrame frame = new Window(++windowCount);
+        JInternalFrame frame = new Window(WINDOW_COUNT.getAndIncrement());
         frame.setName(frame.getTitle());
         frame.setSize(200, 100);
         frame.setVisible(true);
@@ -31,7 +32,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 
     @SuppressWarnings("serial")
     private static class Window extends JInternalFrame {
-        /* default */ Window(int windowID) {
+        Window(int windowID) {
             super("window #" + windowID);
         }
 

@@ -1,5 +1,6 @@
 package fr.duminy.desktop.core;
 
+import com.google.common.annotations.VisibleForTesting;
 import fr.duminy.desktop.WindowListener;
 
 import javax.swing.*;
@@ -10,7 +11,7 @@ import java.awt.event.ContainerListener;
 import java.util.function.BiConsumer;
 
 @SuppressWarnings("serial")
-    /* default */ class CustomDesktopManager extends DefaultDesktopManager implements ContainerListener {
+class CustomDesktopManager extends DefaultDesktopManager implements ContainerListener {
     private final EventListenerList listeners = new EventListenerList();
 
     @Override public final void componentAdded(ContainerEvent event) {
@@ -21,12 +22,12 @@ import java.util.function.BiConsumer;
         fireWindowUnregistered(event.getChild());
     }
 
-    /* default */
+    @VisibleForTesting
     final void addWindowListener(WindowListener listener) {
         listeners.add(WindowListener.class, listener);
     }
 
-    /* default */
+    @VisibleForTesting
     final void removeWindowListener(WindowListener listener) {
         listeners.remove(WindowListener.class, listener);
     }
