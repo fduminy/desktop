@@ -147,8 +147,10 @@ tasks.withType(SpotBugsTask) {
         html.enabled = true
     }
     effort = 'max'
-    ignoreFailures = true //TODO set it to 'false' and fix bugs
+    ignoreFailures = false
     reportLevel = 'low'
+
+    excludeFilter = file("etc/spotbugs-exclude-filter.xml")
 }
 
 tasks.withType(Pmd) {

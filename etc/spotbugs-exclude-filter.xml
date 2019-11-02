@@ -1,0 +1,10 @@
+<FindBugsFilter>
+    <Match>
+        <Class name="fr.duminy.desktop.core.DefaultDesktopTest"/>
+        <Bug code="BC"/>
+    </Match>
+    <Match>
+        <Class name="fr.duminy.desktop.core.AbstractDesktopJGivenTest"/>
+        <Bug code="UPM"/>
+    </Match>
+</FindBugsFilter>
