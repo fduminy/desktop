@@ -1,7 +1,7 @@
-package fr.duminy.desktop.core;
+package fr.duminy.desktop.adapter.swing;
 
 import com.google.common.annotations.VisibleForTesting;
-import fr.duminy.desktop.WindowListener;
+import fr.duminy.desktop.domain.model.WindowListener;
 
 import javax.swing.*;
 import javax.swing.event.EventListenerList;

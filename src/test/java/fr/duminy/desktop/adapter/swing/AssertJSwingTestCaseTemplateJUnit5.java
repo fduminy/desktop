@@ -1,4 +1,4 @@
-package fr.duminy.desktop.core;
+package fr.duminy.desktop.adapter.swing;
 
 import org.assertj.swing.testing.AssertJSwingTestCaseTemplate;
 import org.junit.jupiter.api.AfterAll;

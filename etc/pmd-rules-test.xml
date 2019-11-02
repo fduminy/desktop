@@ -4,7 +4,12 @@
 
     <rule ref="category/java/codestyle.xml/ShortClassName"/>
 
-    <rule ref="category/java/codestyle.xml/ClassNamingConventions"/>
+    <rule ref="category/java/codestyle.xml/ClassNamingConventions">
+        <properties>
+            <!-- default pattern unless it's the ArchitectureTest class -->
+            <property name="utilityClassPattern" value="([A-Z][a-zA-Z0-9]+(Utils?|Helper))|ArchitectureTest"/>
+        </properties>
+    </rule>
     <rule ref="category/java/codestyle.xml/MethodNamingConventions">
         <properties>
             <!-- (test) methods are allowed to contains underscore in their name for JGiven based tests -->

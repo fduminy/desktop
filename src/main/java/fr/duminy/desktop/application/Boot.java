@@ -1,13 +1,12 @@
 package fr.duminy.desktop.application;
 
-import com.google.common.annotations.VisibleForTesting;
-import fr.duminy.desktop.core.DefaultDesktop;
+import fr.duminy.desktop.adapter.swing.SwingUserInterface;
+import fr.duminy.desktop.application.service.UserInterface;
+import org.picocontainer.MutablePicoContainer;
+import org.picocontainer.PicoBuilder;
+import org.picocontainer.lifecycle.ReflectionLifecycleStrategy;
 
-import javax.swing.*;
-import java.awt.*;
-
-import static java.awt.Toolkit.getDefaultToolkit;
-import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
+import static java.lang.Runtime.getRuntime;
 
 public final class Boot {
     private Boot() {
@@ -15,23 +14,13 @@ public final class Boot {
     }
 
     public static void main(String[] args) {
-        startUI();
-    }
+        PicoBuilder builder = new PicoBuilder();
+        builder.withCaching().withLifecycle(ReflectionLifecycleStrategy.class);
 
-    @VisibleForTesting
-    public static JFrame startUI() {
-        JFrame frame = new JFrame("Desktop");
-        frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        frame.setContentPane(new DefaultDesktop());
-        frame.setMinimumSize(new Dimension(800, 400));
-        frame.pack();
-        frame.setVisible(true);
+        MutablePicoContainer container = builder.build();
+        container.addComponent(UserInterface.class, SwingUserInterface.class);
+        container.start();
 
-        Dimension screenSize = getDefaultToolkit().getScreenSize();
-        Dimension size = frame.getSize();
-        frame.setLocation((int) (screenSize.getWidth() - size.getWidth()),
-                (int) (screenSize.getHeight() - size.getHeight()));
-
-        return frame;
+        getRuntime().addShutdownHook(new Thread(container::stop));
     }
 }

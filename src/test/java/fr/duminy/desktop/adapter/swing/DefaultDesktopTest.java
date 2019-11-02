@@ -1,4 +1,4 @@
-package fr.duminy.desktop.core;
+package fr.duminy.desktop.adapter.swing;
 
 import com.tngtech.jgiven.annotation.ScenarioStage;
 import com.tngtech.jgiven.junit5.JGivenExtension;

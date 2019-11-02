@@ -1,4 +1,4 @@
-package fr.duminy.desktop;
+package fr.duminy.desktop.domain.model;
 
 import javax.swing.*;
 import java.util.EventListener;

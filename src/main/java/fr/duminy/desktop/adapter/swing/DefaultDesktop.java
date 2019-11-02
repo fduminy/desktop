@@ -1,8 +1,8 @@
-package fr.duminy.desktop.core;
+package fr.duminy.desktop.adapter.swing;
 
 import com.google.common.annotations.VisibleForTesting;
-import fr.duminy.desktop.Desktop;
-import fr.duminy.desktop.WindowListener;
+import fr.duminy.desktop.domain.model.Desktop;
+import fr.duminy.desktop.domain.model.WindowListener;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,11 +10,11 @@ import java.awt.*;
 import static java.awt.BorderLayout.CENTER;
 
 @SuppressWarnings("serial")
-public class DefaultDesktop extends JPanel implements Desktop {
+class DefaultDesktop extends JPanel implements Desktop {
     private final CustomDesktopManager manager;
     private final JDesktopPane desktopPane;
 
-    public DefaultDesktop() {
+    DefaultDesktop() {
         super(new BorderLayout());
 
         manager = new CustomDesktopManager();

@@ -1,4 +1,4 @@
-package fr.duminy.desktop.core;
+package fr.duminy.desktop.adapter.swing;
 
 import org.assertj.core.util.VisibleForTesting;
 import org.assertj.swing.edt.GuiQuery;
@@ -8,7 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.beans.PropertyVetoException;
 
-import static fr.duminy.desktop.application.Boot.startUI;
+import static fr.duminy.desktop.adapter.swing.SwingUserInterface.startUI;
 import static java.awt.BorderLayout.CENTER;
 import static java.awt.BorderLayout.WEST;
 import static javax.swing.BorderFactory.createTitledBorder;

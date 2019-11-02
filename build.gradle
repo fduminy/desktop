@@ -32,6 +32,7 @@ group = 'fr.duminy.desktop'
 version = '0.0.1-SNAPSHOT'
 
 def junitVersion = '5.5.2'
+def archUnitVersion = '0.11.0'
 
 repositories {
     // Use jcenter for resolving dependencies.
@@ -45,12 +46,11 @@ compileJava   {
 }
 
 dependencies {
-    // This dependency is used by the application.
     implementation 'com.google.guava:guava:28.1-jre'
     implementation 'org.swinglabs.swingx:swingx-all:1.6.5-1'
     implementation 'org.slf4j:slf4j-api:2.0.0-alpha0'
-    
-    // Use JUnit Jupiter API for testing.
+    implementation 'org.picocontainer:picocontainer:2.15'
+
     testImplementation 'org.junit.jupiter:junit-jupiter-api:' + junitVersion
     testImplementation 'ch.qos.logback:logback-classic:1.3.0-alpha4', {
         exclude group:'slf4j-api', module:'org.slf4j'
@@ -71,9 +71,10 @@ dependencies {
     testImplementation 'org.mockito:mockito-junit-jupiter:3.0.0', {
         exclude group:'org.junit.jupiter', module:'junit-jupiter-api'
     }
+    testImplementation 'com.tngtech.archunit:archunit-junit5-api:' + archUnitVersion
 
-    // Use JUnit Jupiter Engine for testing.
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:' + junitVersion
+    testRuntimeOnly 'com.tngtech.archunit:archunit-junit5-engine:' + archUnitVersion
 }
 
 application {

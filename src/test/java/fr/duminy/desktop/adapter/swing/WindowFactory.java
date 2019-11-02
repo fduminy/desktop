@@ -1,4 +1,4 @@
-package fr.duminy.desktop.core;
+package fr.duminy.desktop.adapter.swing;
 
 import org.assertj.core.util.VisibleForTesting;
 
