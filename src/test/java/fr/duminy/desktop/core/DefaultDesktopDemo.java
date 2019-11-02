@@ -8,18 +8,16 @@ import javax.swing.*;
 import java.awt.*;
 import java.beans.PropertyVetoException;
 
+import static fr.duminy.desktop.application.Boot.startUI;
 import static java.awt.BorderLayout.CENTER;
 import static java.awt.BorderLayout.WEST;
-import static java.awt.Toolkit.getDefaultToolkit;
 import static javax.swing.BorderFactory.createTitledBorder;
-import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import static org.assertj.core.api.Assertions.fail;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 import static org.slf4j.LoggerFactory.getLogger;
 
 public class DefaultDesktopDemo {
     private static final Logger LOG = getLogger(DefaultDesktopDemo.class);
-    private static final int OS_TASK_BAR_SIZE = 50;
 
     private final WindowFactory windowFactory = new WindowFactory();
 
@@ -45,24 +43,12 @@ public class DefaultDesktopDemo {
     private class CreateDesktopQuery extends GuiQuery<DefaultDesktop> {
         @Override
         protected DefaultDesktop executeInEDT() {
+            JFrame frame = startUI();
+            DefaultDesktop desktop = (DefaultDesktop) frame.getContentPane();
             JPanel content = new JPanel(new BorderLayout());
-
             content.add(buildCommandPanel(), WEST);
-
-            DefaultDesktop desktop = new DefaultDesktop();
             content.add(desktop, CENTER);
-
-            JFrame frame = new JFrame("Demo");
-            frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
             frame.setContentPane(content);
-            frame.setMinimumSize(new Dimension(800, 400));
-            frame.pack();
-            frame.setVisible(true);
-
-            Dimension screenSize = getDefaultToolkit().getScreenSize();
-            Dimension size = frame.getSize();
-            frame.setLocation((int) (screenSize.getWidth() - size.getWidth()),
-                    (int) (screenSize.getHeight() - size.getHeight() - OS_TASK_BAR_SIZE));
             return desktop;
         }
 

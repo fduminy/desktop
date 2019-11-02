@@ -2,6 +2,9 @@
 <ruleset name="desktopRuleSet">
     <description>Desktop rule set for tests</description>
 
+    <rule ref="category/java/codestyle.xml/ShortClassName"/>
+
+    <rule ref="category/java/codestyle.xml/ClassNamingConventions"/>
     <rule ref="category/java/codestyle.xml/MethodNamingConventions">
         <properties>
             <!-- (test) methods are allowed to contains underscore in their name for JGiven based tests -->

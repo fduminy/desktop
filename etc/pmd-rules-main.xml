@@ -2,5 +2,18 @@
 <ruleset name="desktopRuleSet">
     <description>Desktop rule set for main classes</description>
 
+    <rule ref="category/java/codestyle.xml/ShortClassName">
+        <properties>
+            <!-- 4 instead of 5 (default) because of Boot class -->
+            <property name="minimum" value="4"/>
+        </properties>
+    </rule>
+
+    <rule ref="category/java/codestyle.xml/ClassNamingConventions">
+        <properties>
+            <!-- default pattern unless it's the Boot class -->
+            <property name="utilityClassPattern" value="([A-Z][a-zA-Z0-9]+(Utils?|Helper))|Boot"/>
+        </properties>
+    </rule>
     <rule ref="category/java/codestyle.xml/MethodNamingConventions"/>
 </ruleset>

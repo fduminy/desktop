@@ -78,7 +78,7 @@ dependencies {
 
 application {
     // Define the main class for the application
-    mainClassName = 'desktop.App'
+    mainClassName = 'fr.duminy.desktop.application.Boot'
 }
 
 test {

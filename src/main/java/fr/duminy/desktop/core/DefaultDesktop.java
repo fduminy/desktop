@@ -10,11 +10,11 @@ import java.awt.*;
 import static java.awt.BorderLayout.CENTER;
 
 @SuppressWarnings("serial")
-class DefaultDesktop extends JPanel implements Desktop {
+public class DefaultDesktop extends JPanel implements Desktop {
     private final CustomDesktopManager manager;
     private final JDesktopPane desktopPane;
 
-    DefaultDesktop() {
+    public DefaultDesktop() {
         super(new BorderLayout());
 
         manager = new CustomDesktopManager();
