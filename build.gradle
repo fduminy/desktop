@@ -141,8 +141,7 @@ coveralls {
     jacocoReportPath = "${projectDir}/build/reports/jacoco/test/jacocoTestReport.xml"
 }
 
-//noinspection GrDeprecatedAPIUsage //TODO use SpotBugs when it will be fixed
-tasks.withType(FindBugs) {
+tasks.withType(SpotBugsTask) {
     reports {
         xml.enabled = false
         html.enabled = true
@@ -155,11 +154,7 @@ tasks.withType(FindBugs) {
 tasks.withType(Pmd) {
     ignoreFailures = false
 }
+
 //noinspection GroovyAccessibility
 pmdTest.ruleSets = ["etc/pmd-rules-commons.xml", "etc/pmd-rules-test.xml"]
 pmdMain.ruleSets = ["etc/pmd-rules-commons.xml", "etc/pmd-rules-main.xml"]
-
-tasks.withType(SpotBugsTask) {
-    reports.xml.enabled = false
-    reports.html.enabled = true
-}
