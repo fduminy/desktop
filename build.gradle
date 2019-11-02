@@ -153,7 +153,7 @@ tasks.withType(FindBugs) {
 }
 
 tasks.withType(Pmd) {
-    ignoreFailures = true //TODO set it to 'false' and fix bugs
+    ignoreFailures = false
 }
 //noinspection GroovyAccessibility
 pmdTest.ruleSets = ["etc/pmd-rules-commons.xml", "etc/pmd-rules-test.xml"]
