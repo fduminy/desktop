@@ -37,7 +37,7 @@ public class SwingUserInterface implements UserInterface {
     @Override
     public void start() {
         try {
-            invokeAndWait(SwingUserInterface::startUI);
+            invokeAndWait(() -> frameReference.set(startUI()));
         } catch (InterruptedException | InvocationTargetException e) {
             LOGGER.error(e.getMessage(), e);
         }
