@@ -32,6 +32,10 @@ class ArchitectureTest {
             ));
 
     @ArchTest
-    public static final ArchRule PICO_CONTAINER = noClasses().that(not(equivalentTo(Boot.class)))
+    private static final ArchRule PICO_CONTAINER = noClasses().that(not(equivalentTo(Boot.class)))
             .should().dependOnClassesThat().resideInAnyPackage("org.picocontainer..");
+
+    @ArchTest
+    private static final ArchRule SWING_AND_AWT = noClasses().that().resideOutsideOfPackage("fr.duminy.desktop.adapter.swing..")
+            .should().dependOnClassesThat().resideInAnyPackage("java.awt..", "javax.swing..");
 }
