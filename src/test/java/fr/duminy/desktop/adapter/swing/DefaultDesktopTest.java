@@ -2,11 +2,13 @@ package fr.duminy.desktop.adapter.swing;
 
 import com.tngtech.jgiven.annotation.ScenarioStage;
 import com.tngtech.jgiven.junit5.JGivenExtension;
+import fr.duminy.desktop.junit5.TestLogExtension;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
-@ExtendWith(JGivenExtension.class) @SuppressWarnings({ "serial", "squid:S2699" })
-class DefaultDesktopTest extends AbstractDesktopJGivenTest {
+@ExtendWith({JGivenExtension.class, TestLogExtension.class})
+@SuppressWarnings({"serial", "squid:S2699"})
+class DefaultDesktopTest extends AssertJSwingTestCaseTemplateJUnit5 {
     @SuppressWarnings("unused") @ScenarioStage private DesktopStage stage;
 
     @Test void windowRegistered_event_is_sent_to_listeners() {

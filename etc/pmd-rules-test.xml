@@ -17,4 +17,10 @@
             <property name="junit4TestPattern" value="[a-z][_a-zA-Z0-9]*"/>
         </properties>
     </rule>
+    <rule ref="category/java/codestyle.xml/LinguisticNaming">
+        <properties>
+            <!-- default prefixes without 'have' for ArchitectureTest -->
+            <property name="booleanMethodPrefixes" value="is|has|can|will|should"/>
+        </properties>
+    </rule>
 </ruleset>
