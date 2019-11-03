@@ -1,7 +1,6 @@
 package fr.duminy.desktop.adapter.swing;
 
 import fr.duminy.desktop.application.service.UserInterface;
-import org.slf4j.Logger;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,11 +10,8 @@ import java.util.concurrent.atomic.AtomicReference;
 import static java.awt.Toolkit.getDefaultToolkit;
 import static javax.swing.SwingUtilities.invokeAndWait;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
-import static org.slf4j.LoggerFactory.getLogger;
 
 public class SwingUserInterface implements UserInterface {
-    private static final Logger LOGGER = getLogger(SwingUserInterface.class);
-
     private final AtomicReference<JFrame> frameReference = new AtomicReference<>();
 
     static JFrame startUI() {
@@ -35,12 +31,8 @@ public class SwingUserInterface implements UserInterface {
     }
 
     @SuppressWarnings("unused")
-    public void start() {
-        try {
-            invokeAndWait(() -> frameReference.set(startUI()));
-        } catch (InterruptedException | InvocationTargetException e) {
-            LOGGER.error(e.getMessage(), e);
-        }
+    public void start() throws InvocationTargetException, InterruptedException {
+        invokeAndWait(() -> frameReference.set(startUI()));
     }
 
     @SuppressWarnings("unused")
