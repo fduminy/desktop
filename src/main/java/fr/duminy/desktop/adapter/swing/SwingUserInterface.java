@@ -34,7 +34,7 @@ public class SwingUserInterface implements UserInterface {
         return frame;
     }
 
-    @Override
+    @SuppressWarnings("unused")
     public void start() {
         try {
             invokeAndWait(() -> frameReference.set(startUI()));
@@ -43,7 +43,7 @@ public class SwingUserInterface implements UserInterface {
         }
     }
 
-    @Override
+    @SuppressWarnings("unused")
     public void stop() {
         JFrame frame = frameReference.getAndSet(null);
         if (frame != null) {
