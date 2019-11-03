@@ -3,8 +3,10 @@ package fr.duminy.desktop.architecture;
 import com.tngtech.archunit.junit.AnalyzeClasses;
 import com.tngtech.archunit.junit.ArchTest;
 import com.tngtech.archunit.lang.ArchRule;
+import fr.duminy.desktop.application.Boot;
 
 import static com.tngtech.archunit.base.DescribedPredicate.not;
+import static com.tngtech.archunit.core.domain.JavaClass.Predicates.equivalentTo;
 import static com.tngtech.archunit.core.domain.JavaClass.Predicates.resideInAnyPackage;
 import static com.tngtech.archunit.lang.conditions.ArchConditions.resideOutsideOfPackages;
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.noClasses;
@@ -28,4 +30,8 @@ class ArchitectureTest {
                     "fr.duminy.desktop.application.service..",
                     "fr.duminy.desktop.adapter.swing.."
             ));
+
+    @ArchTest
+    public static final ArchRule PICO_CONTAINER = noClasses().that(not(equivalentTo(Boot.class)))
+            .should().dependOnClassesThat().resideInAnyPackage("org.picocontainer..");
 }
