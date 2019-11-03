@@ -20,18 +20,9 @@ public abstract class AssertJSwingTestCaseTemplateJUnit5 extends AssertJSwingTes
 
     @BeforeEach public final void setUp() {
         this.setUpRobot();
-        this.onSetUp();
     }
 
     @AfterEach public final void tearDown() {
-        try {
-            this.onTearDown();
-        } finally {
-            this.cleanUp();
-        }
+        this.cleanUp();
     }
-
-    abstract void onSetUp();
-
-    abstract void onTearDown();
 }

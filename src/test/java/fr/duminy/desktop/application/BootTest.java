@@ -1,5 +1,6 @@
 package fr.duminy.desktop.application;
 
+import fr.duminy.desktop.junit5.TestLogExtension;
 import org.assertj.core.api.SoftAssertions;
 import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
 import org.assertj.swing.core.ComponentFinder;
@@ -10,7 +11,7 @@ import javax.swing.*;
 
 import static org.assertj.swing.core.BasicComponentFinder.finderWithNewAwtHierarchy;
 
-@ExtendWith(SoftAssertionsExtension.class)
+@ExtendWith({SoftAssertionsExtension.class, TestLogExtension.class})
 class BootTest {
     private final SoftAssertions softly = new SoftAssertions();
 

@@ -16,4 +16,6 @@
         </properties>
     </rule>
     <rule ref="category/java/codestyle.xml/MethodNamingConventions"/>
+
+    <rule ref="category/java/codestyle.xml/LinguisticNaming"/>
 </ruleset>

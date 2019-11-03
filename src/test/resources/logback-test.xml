@@ -8,7 +8,7 @@
 
         <sift>
             <appender name="FILE-${testName}" class="ch.qos.logback.core.FileAppender">
-                <file>target/test-logs/${testName}.log</file>
+                <file>build/test-logs/${testName}.log</file>
 
                 <encoder>
                     <pattern>%date{HH:mm:ss.SSS} %-5level %logger{20} - %msg %n</pattern>
@@ -33,4 +33,5 @@
     </root>
 
     <logger name="com.tngtech.jgiven" level="ERROR"/>
+    <logger name="com.tngtech.archunit" level="ERROR"/>
 </configuration>
