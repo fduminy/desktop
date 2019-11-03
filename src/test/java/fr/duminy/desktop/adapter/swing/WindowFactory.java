@@ -2,7 +2,6 @@ package fr.duminy.desktop.adapter.swing;
 
 import org.assertj.core.util.VisibleForTesting;
 
-import javax.swing.*;
 import java.beans.PropertyVetoException;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -12,8 +11,8 @@ class WindowFactory {
     private static final AtomicInteger WINDOW_COUNT = new AtomicInteger(1);
 
     @VisibleForTesting
-    JInternalFrame createWindow() {
-        JInternalFrame frame = new Window(WINDOW_COUNT.getAndIncrement());
+    SwingWindow createWindow() {
+        Window frame = new Window(WINDOW_COUNT.getAndIncrement());
         frame.setName(frame.getTitle());
         frame.setSize(200, 100);
         frame.setVisible(true);
@@ -31,7 +30,7 @@ class WindowFactory {
     }
 
     @SuppressWarnings("serial")
-    private static class Window extends JInternalFrame {
+    private static class Window extends SwingWindow {
         Window(int windowID) {
             super("window #" + windowID);
         }

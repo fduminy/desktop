@@ -1,6 +1,7 @@
 package fr.duminy.desktop.adapter.swing;
 
 import com.google.common.annotations.VisibleForTesting;
+import fr.duminy.desktop.domain.model.Window;
 import fr.duminy.desktop.domain.model.WindowListener;
 
 import javax.swing.*;
@@ -40,11 +41,11 @@ class CustomDesktopManager extends DefaultDesktopManager implements ContainerLis
         notifyListeners(component, (window, listener) -> listener.windowUnregistered(window));
     }
 
-    private void notifyListeners(Component component, BiConsumer<JInternalFrame, WindowListener> listenerConsumer) {
-        if (component instanceof JInternalFrame) {
+    private void notifyListeners(Component component, BiConsumer<Window, WindowListener> listenerConsumer) {
+        if (component instanceof SwingWindow) {
             Object[] listenerList = listeners.getListenerList();
             for (int i = listenerList.length - 2; i >= 0; i -= 2) {
-                listenerConsumer.accept((JInternalFrame) component, (WindowListener) listenerList[i + 1]);
+                listenerConsumer.accept((SwingWindow) component, (WindowListener) listenerList[i + 1]);
             }
         }
     }
