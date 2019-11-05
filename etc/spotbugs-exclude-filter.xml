@@ -1,6 +1,6 @@
 <FindBugsFilter>
     <Match>
-        <Class name="fr.duminy.desktop.adapter.swing.DefaultDesktopTest"/>
+        <Class name="fr.duminy.desktop.adapter.swing.SwingDesktopTest"/>
         <Bug code="BC"/>
     </Match>
     <Match>

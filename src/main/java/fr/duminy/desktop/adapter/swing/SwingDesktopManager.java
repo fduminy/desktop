@@ -12,7 +12,7 @@ import java.awt.event.ContainerListener;
 import java.util.function.BiConsumer;
 
 @SuppressWarnings("serial")
-class CustomDesktopManager extends DefaultDesktopManager implements ContainerListener {
+class SwingDesktopManager extends DefaultDesktopManager implements ContainerListener {
     private final EventListenerList listeners = new EventListenerList();
 
     @Override public final void componentAdded(ContainerEvent event) {

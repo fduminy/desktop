@@ -17,7 +17,7 @@ public class SwingUserInterface implements UserInterface {
     static JFrame startUI() {
         JFrame frame = new JFrame("Desktop");
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        frame.setContentPane(new DefaultDesktop());
+        frame.setContentPane(new SwingDesktop());
         frame.setMinimumSize(new Dimension(800, 400));
         frame.pack();
         frame.setVisible(true);

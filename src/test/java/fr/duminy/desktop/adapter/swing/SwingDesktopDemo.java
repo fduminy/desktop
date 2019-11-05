@@ -16,18 +16,18 @@ import static org.assertj.core.api.Assertions.fail;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 import static org.slf4j.LoggerFactory.getLogger;
 
-public class DefaultDesktopDemo {
-    private static final Logger LOG = getLogger(DefaultDesktopDemo.class);
+public class SwingDesktopDemo {
+    private static final Logger LOG = getLogger(SwingDesktopDemo.class);
 
     private final WindowFactory windowFactory = new WindowFactory();
 
-    private DefaultDesktop desktop;
+    private SwingDesktop desktop;
 
     public static void main(String[] args) {
-        new DefaultDesktopDemo().init();
+        new SwingDesktopDemo().init();
     }
 
-    static JDesktopPane getJDesktopPane(DefaultDesktop desktop) {
+    static JDesktopPane getJDesktopPane(SwingDesktop desktop) {
         return desktop.getDesktopPane();
     }
 
@@ -36,15 +36,15 @@ public class DefaultDesktopDemo {
     }
 
     @VisibleForTesting
-    DefaultDesktop getDesktop() {
+    SwingDesktop getDesktop() {
         return desktop;
     }
 
-    private class CreateDesktopQuery extends GuiQuery<DefaultDesktop> {
+    private class CreateDesktopQuery extends GuiQuery<SwingDesktop> {
         @Override
-        protected DefaultDesktop executeInEDT() {
+        protected SwingDesktop executeInEDT() {
             JFrame frame = startUI();
-            DefaultDesktop desktop = (DefaultDesktop) frame.getContentPane();
+            SwingDesktop desktop = (SwingDesktop) frame.getContentPane();
             JPanel content = new JPanel(new BorderLayout());
             content.add(buildCommandPanel(), WEST);
             content.add(desktop, CENTER);

@@ -8,7 +8,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 
 @ExtendWith({JGivenExtension.class, TestLogExtension.class})
 @SuppressWarnings({"serial", "squid:S2699"})
-class DefaultDesktopTest extends AssertJSwingTestCaseTemplateJUnit5 {
+class SwingDesktopTest extends AssertJSwingTestCaseTemplateJUnit5 {
     @SuppressWarnings("unused") @ScenarioStage private DesktopStage stage;
 
     @Test void windowRegistered_event_is_sent_to_listeners() {
