@@ -27,10 +27,12 @@ public class SwingDesktopDemo {
         new SwingDesktopDemo().init();
     }
 
+    @VisibleForTesting
     static JDesktopPane getJDesktopPane(SwingDesktop desktop) {
         return desktop.getDesktopPane();
     }
 
+    @VisibleForTesting
     final void init() {
         desktop = execute(new CreateDesktopQuery());
     }
