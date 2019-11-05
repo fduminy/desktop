@@ -3,20 +3,20 @@ package fr.duminy.desktop.adapter.swing;
 import com.tngtech.jgiven.Stage;
 import fr.duminy.desktop.domain.model.WindowListener;
 
-import static fr.duminy.desktop.adapter.swing.DefaultDesktopDemo.getJDesktopPane;
+import static fr.duminy.desktop.adapter.swing.SwingDesktopDemo.getJDesktopPane;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 import static org.mockito.Mockito.*;
 
 @SuppressWarnings("unused")
 class DesktopStage extends Stage<DesktopStage> {
     private final WindowFactory windowFactory = new WindowFactory();
-    private final DefaultDesktop desktop;
+    private final SwingDesktop desktop;
     private WindowListener listener;
     private SwingWindow window;
 
     DesktopStage() {
         super();
-        DefaultDesktopDemo demo = new DefaultDesktopDemo();
+        SwingDesktopDemo demo = new SwingDesktopDemo();
         demo.init();
 
         desktop = demo.getDesktop();
