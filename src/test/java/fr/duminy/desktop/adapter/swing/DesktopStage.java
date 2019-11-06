@@ -1,16 +1,19 @@
 package fr.duminy.desktop.adapter.swing;
 
 import com.tngtech.jgiven.Stage;
+import com.tngtech.jgiven.annotation.ProvidedScenarioState;
 import fr.duminy.desktop.domain.model.WindowListener;
 
 import static fr.duminy.desktop.adapter.swing.SwingDesktopDemo.getJDesktopPane;
 import static org.assertj.swing.edt.GuiActionRunner.execute;
 import static org.mockito.Mockito.*;
 
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "UnusedReturnValue"})
 class DesktopStage extends Stage<DesktopStage> {
-    private final WindowFactory windowFactory = new WindowFactory();
+    @ProvidedScenarioState
     private final SwingDesktop desktop;
+
+    private final WindowFactory windowFactory = new WindowFactory();
     private WindowListener listener;
     private SwingWindow window;
 
@@ -22,7 +25,7 @@ class DesktopStage extends Stage<DesktopStage> {
         desktop = demo.getDesktop();
     }
 
-    DesktopStage no_windows_is_opened() {
+    DesktopStage desktop_is_empty() {
         return self();
     }
 

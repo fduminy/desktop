@@ -1,5 +1,6 @@
 package fr.duminy.desktop.adapter.swing;
 
+import fr.duminy.desktop.domain.model.Shortcut;
 import org.assertj.core.util.VisibleForTesting;
 import org.assertj.swing.edt.GuiQuery;
 import org.slf4j.Logger;
@@ -55,15 +56,17 @@ public class SwingDesktopDemo {
         }
 
         private JPanel buildCommandPanel() {
-            JPanel windowCommands = new JPanel(new GridLayout(1, 1));
-            createNewWindowButton(windowCommands);
-            createCloseActiveWindowButton(windowCommands);
+            GridLayout layout = new GridLayout(1, 1);
+            JPanel commands = new JPanel(layout);
+            createNewWindowButton(commands);
+            createCloseActiveWindowButton(commands);
+            createNewShortcutButton(commands);
 
-            ((GridLayout) windowCommands.getLayout()).setRows(windowCommands.getComponentCount());
-            windowCommands
+            layout.setRows(commands.getComponentCount());
+            commands
                     .setBorder(createTitledBorder("<html><center>Window</center><br/><center>commands</center></html>"));
 
-            return windowCommands;
+            return commands;
         }
 
         private void createNewWindowButton(JPanel parent) {
@@ -93,6 +96,12 @@ public class SwingDesktopDemo {
                 }
             });
             panel.add(result);
+        }
+
+        private void createNewShortcutButton(JPanel parent) {
+            JButton button = new JButton("new shortcut");
+            button.addActionListener(e -> desktop.addShortcut(new Shortcut("icon")));
+            parent.add(button);
         }
     }
 }
